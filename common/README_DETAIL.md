@@ -32,13 +32,15 @@ void FileSync(FileHandle &handle);
 
 Note that, the `OpenFile` method returns a `FileHandle`. The detailed implementation will be dependent on the operating system. For Unix/Linux based os, the implementation is a class wraps file descriptor (fd). 
 
-
-
-#### `FileBuffer`
+##### 2. `FileBuffer`
 
 `FileBuffer` is a buffer that is employed to store the content which is read from or written to the file. We need to specify the buffer size when we create a `FileBuffer` instance. Note that, the buffer size parameter must be multiple times of **4096**. Inside the `FileBuffer` constructor, 
 
 
 
 
-https://pkg.go.dev/syscall#Errno
+
+#### Reference
+
+1.  
+    https://pkg.go.dev/syscall#Errno

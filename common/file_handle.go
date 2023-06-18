@@ -3,8 +3,8 @@ package common
 import "os"
 
 type FileHandle interface {
-	Read(buffer *[]byte, nbyte uint64, offset uint64)
-	Write(buffer []byte, nbyte uint64, offset uint64)
+	Read(buffer []byte, offset uint64)
+	Write(buffer []byte, offset uint64)
 	Sync()
 	Close()
 }
@@ -23,15 +23,17 @@ func NewFileHandle(fs *FileSystem, file *os.File, path string) *UnixFileHandle {
 	}
 }
 
-func (handle *UnixFileHandle) Read(buffer *[]byte, nbyte uint64, offset uint64) {
-	handle.ReadFromOffset(handle, buffer, nbyte, offset)
+func (handle *UnixFileHandle) Read(buffer []byte, offset uint64) {
+	handle.ReadFromOffset(handle, buffer, offset)
 }
 
-func (handle *UnixFileHandle) Write(buffer []byte, nbyte uint64, offset uint64) {
-	handle.WriteFromOffset(handle, buffer, nbyte, offset)
+func (handle *UnixFileHandle) Write(buffer []byte, offset uint64) {
+	handle.WriteFromOffset(handle, buffer, offset)
 }
 
-func (handle *UnixFileHandle) Sync() {}
+func (handle *UnixFileHandle) Sync() {
+	handle.FileSync(handle)
+}
 
 func (handle *UnixFileHandle) Close() {
 	handle.file.Close()
