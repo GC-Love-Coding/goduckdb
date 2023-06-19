@@ -7,12 +7,13 @@
     -   `WriteAheadLog`
 -   `Transaction`
 -   `Catalog`
--   `FileSystem`
--   `FileHandle`
 -   
--   
+-   `Block`
+    -   `BlockHeader`
+    -   `DataBlock`
 
-`FileSystem` and `FileHandle` may need to be done first since the `SingleFileBlockManager` component replies on these two components to manipulate the disk file.
+-   `BlockManager`
+-   `SingleFileBlockManager`
 
 
 
